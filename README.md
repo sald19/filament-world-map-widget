@@ -7,7 +7,8 @@
 
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+![image](https://github.com/user-attachments/assets/5373a841-6918-42b1-8227-698261a774b5)
+
 
 ## Installation
 
@@ -17,44 +18,45 @@ You can install the package via composer:
 composer require infinityxtech/filament-world-map-widget
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-world-map-widget-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-world-map-widget-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-world-map-widget-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
 ```php
-$filamentWorldMapWidget = new InfinityXTech\FilamentWorldMapWidget();
-echo $filamentWorldMapWidget->echoPhrase('Hello, InfinityXTech!');
+php artisan make:filament-map-widget MapWidget
 ```
 
-## Testing
+## Available methods
 
-```bash
-composer test
+```php
+public function stats () {
+    return [
+        'US' => 35000,
+        'RS' => 15000
+    ];
+}
+
+public function heading ():string|Htmlable|null {
+    return 'World Map';
+}
+
+public function tooltip ():string|Htmlable {
+    return 'stats';
+}
+
+public function map ():Map {
+    return Map::WORLD;
+}
+
+public function color ():array {
+    return [0, 120, 215]; // rgb value
+}
+
+public function height ():string;
+
+public function additionalOptions ():array {
+    return [];
+}
 ```
+## For more additional options check: (Jsvectormap)[https://jvm-docs.vercel.app/docs/introduction]
 
 ## Changelog
 
