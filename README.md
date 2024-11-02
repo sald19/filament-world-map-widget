@@ -56,7 +56,7 @@ public function additionalOptions ():array {
     return [];
 }
 ```
-## For more additional options check: (Jsvectormap)[https://jvm-docs.vercel.app/docs/introduction]
+## For more additional options check: [Jsvectormap](https://jvm-docs.vercel.app/docs/introduction)
 
 ## Changelog
 
