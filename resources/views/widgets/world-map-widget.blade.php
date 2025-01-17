@@ -1,6 +1,8 @@
 @use('Filament\Support\Facades\FilamentAsset')
 <x-filament-widgets::widget>
-    <div ax-load
+    <div
+        x-ignore
+        ax-load
         ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('filament-world-map-widget', 'InfinityXTech/filament-world-map-widget') }}"
         x-data="initWorldMapWidget({
             stats: JSON.parse('{{ json_encode($this->stats()) }}'),

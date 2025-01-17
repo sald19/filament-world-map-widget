@@ -1,5 +1,6 @@
 import jsVectorMap from 'jsvectormap';
-import 'jsvectormap/dist/jsvectormap.min.css';
+import 'jsvectormap/dist/maps/world.js';
+import 'jsvectormap/dist/maps/world-merc.js';
 
 /**
  * Initializes the world map widget with the given options.
@@ -11,21 +12,19 @@ import 'jsvectormap/dist/jsvectormap.min.css';
  * @param {string} options.selector - The CSS selector for the HTML element to attach the map
  * @param {object} options.additionalOptions - Additional options to override or extend the default configuration
  */
-function initWorldMapWidget({ stats, tooltipText, map, color, selector, additionalOptions = {} }) {
+export default function initWorldMapWidget({
+    stats,
+    tooltipText,
+    map,
+    color,
+    selector,
+    additionalOptions = {}
+}) {
     return {
         stats,
 
         async init() {
             const self = this;
-
-            // Dynamically import the required map file
-            try {
-                await import(`jsvectormap/dist/maps/${map.replace('_','-')}.js`);
-            } catch (error) {
-                console.error(`Error loading map: ${map}. Map file not found.`);
-                return;
-            }
-
             const dataValues = self.stats;
             const minValue = Math.min(...Object.values(dataValues));
             const maxValue = Math.max(...Object.values(dataValues));
