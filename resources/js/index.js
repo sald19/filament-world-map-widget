@@ -13,13 +13,13 @@ import jsVectorMap from 'jsvectormap';
  */
 import { loadScript } from './scriptLoader';
 
-export default function initWorldMapWidget({ stats, tooltipText, map, customMapUrl, color, selector, additionalOptions = {} }) {
+export default function initWorldMapWidget({ stats, tooltipText, map, customMapUrl = '', color, selector, additionalOptions = {} }) {
     return {
         stats,
 
         init() {
             const self = this;
-            const scriptUrl = customMapUrl ?? `https://raw.githubusercontent.com/themustafaomar/jsvectormap/master/src/maps/${map.replace(/_/g, '-')}.js`;
+            const scriptUrl = customMapUrl != '' ? customMapUrl : `https://raw.githubusercontent.com/themustafaomar/jsvectormap/master/src/maps/${map.replace(/_/g, '-')}.js`;
 
             loadScript(scriptUrl, () => {
                 // Initialize jsVectorMap after the script is loaded
