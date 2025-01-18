@@ -7,10 +7,11 @@
         x-data="initWorldMapWidget({
             stats: JSON.parse('{{ json_encode($this->stats()) }}'),
             tooltipText: '{{ $this->tooltip() }}',
-            map: '{{ $this->map()->value }}',
+            map: '{{ is_string($this->map()) ? $this->map() : $this->map()->value }}',
             color: JSON.parse('{{ json_encode($this->color()) }}'),
             selector: '#map',
             additionalOptions: JSON.parse('{{ json_encode($this->additionalOptions()) }}'),
+            customMapUrl: '{{ $this->customMapUrl() }}'
         })"
         x-init="init()">
         <x-filament::section>
