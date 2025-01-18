@@ -2,6 +2,10 @@
 
 All notable changes to `filament-world-map-widget` will be documented in this file.
 
+## v1.0.3 - 2025-01-18
+
+**Full Changelog**: https://github.com/InfinityXTech/filament-world-map-widget/compare/v1.0.2...v1.0.3
+
 ## v1.0.2 - 2025-01-18
 
 **Full Changelog**: https://github.com/InfinityXTech/filament-world-map-widget/compare/v1.0.1...v1.0.2
