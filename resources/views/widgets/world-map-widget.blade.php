@@ -2,8 +2,8 @@
 <x-filament-widgets::widget>
     <div
         x-ignore
-        ax-load
-        ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('filament-world-map-widget', 'InfinityXTech/filament-world-map-widget') }}"
+        x-load
+        x-load-src="{{ FilamentAsset::getAlpineComponentSrc('filament-world-map-widget', 'InfinityXTech/filament-world-map-widget') }}"
         x-data="initWorldMapWidget({
             stats: JSON.parse('{{ json_encode($this->stats()) }}'),
             tooltipText: '{{ $this->tooltip() }}',
