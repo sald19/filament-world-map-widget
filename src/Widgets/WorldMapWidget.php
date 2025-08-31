@@ -17,7 +17,7 @@ class WorldMapWidget extends Widget
      * @var string $view
      * The view file that renders the world map widget.
      */
-    protected static string $view = 'filament-world-map-widget::widgets.world-map-widget';
+    protected string $view = 'filament-world-map-widget::widgets.world-map-widget';
 
     /**
      * Returns the stats to be displayed on the map.
@@ -110,6 +110,6 @@ class WorldMapWidget extends Widget
      */
     public function render(): View
     {
-        return view(static::$view); // Render the specified widget view
+        return view($this->view); // Render the specified widget view
     }
 }
