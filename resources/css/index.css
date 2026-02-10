@@ -1,1 +1,6 @@
+@import "tailwindcss";
 @import '../../node_modules/jsvectormap/dist/jsvectormap.min.css';
+
+@source "../../src/**/*.php";
+@source "../../resources/views/**/*.blade.php";
+@source "../../vendor/filament/**/*.blade.php";
