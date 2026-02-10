@@ -25,6 +25,6 @@
         "tailwindcss": "^4.0.0"
     },
     "dependencies": {
-        "jsvectormap": "^1.6.0"
+        "jsvectormap": "^1.7.0"
     }
 }
