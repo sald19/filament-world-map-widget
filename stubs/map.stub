@@ -6,10 +6,11 @@ use InfinityXTech\FilamentWorldMapWidget\Widgets\WorldMapWidget;
 
 class {{ class }} extends WorldMapWidget
 {
-    public function stats () {
+    public function stats(): array
+    {
         return [
             'US' => 35000,
-            'RS' => 15000
+            'RS' => 15000,
         ];
     }
 }

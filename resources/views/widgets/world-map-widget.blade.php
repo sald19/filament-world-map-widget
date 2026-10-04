@@ -1,17 +1,18 @@
 @use('Filament\Support\Facades\FilamentAsset')
 <x-filament-widgets::widget>
     <div
+        wire:key="{{ $this->getMapChecksum() }}"
         x-ignore
         x-load
         x-load-src="{{ FilamentAsset::getAlpineComponentSrc('filament-world-map-widget', 'InfinityXTech/filament-world-map-widget') }}"
         x-data="initWorldMapWidget({
-            stats: JSON.parse('{{ json_encode($this->stats()) }}'),
-            tooltipText: '{{ $this->tooltip() }}',
-            map: '{{ is_string($this->map()) ? $this->map() : $this->map()->value }}',
-            color: JSON.parse('{{ json_encode($this->color()) }}'),
-            selector: '#map-{{ $this->getId() }}',
-            additionalOptions: JSON.parse('{{ json_encode($this->additionalOptions()) }}'),
-            customMapUrl: '{{ $this->customMapUrl() }}'
+            stats: @js($this->stats()),
+            tooltipText: @js((string) $this->tooltip()),
+            map: @js(is_string($this->map()) ? $this->map() : $this->map()->value),
+            color: @js($this->color()),
+            selector: @js($this->getMapSelector()),
+            additionalOptions: @js($this->additionalOptions()),
+            customMapUrl: @js($this->customMapUrl())
         })"
     >
         <x-filament::section>
@@ -21,7 +22,7 @@
                 </x-filament::section.heading>
             @endif
             <div wire:ignore>
-                <div id="map-{{ $this->getId() }}" style="height: {{ $this->height() }}"></div>
+                <div id="{{ $this->getMapId() }}" style="height: {{ $this->height() }}"></div>
             </div>
         </x-filament::section>
     </div>

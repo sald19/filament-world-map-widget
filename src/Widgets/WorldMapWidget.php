@@ -14,7 +14,6 @@ use InfinityXTech\FilamentWorldMapWidget\Enums\Map;
 class WorldMapWidget extends Widget
 {
     /**
-     * @var string $view
      * The view file that renders the world map widget.
      */
     protected string $view = 'filament-world-map-widget::widgets.world-map-widget';
@@ -22,14 +21,12 @@ class WorldMapWidget extends Widget
     /**
      * Returns the stats to be displayed on the map.
      * Keys represent country codes, and values are the associated data points.
-     *
-     * @return array
      */
     public function stats(): array
     {
         return [
             'US' => 35000, // Data for the United States
-            'RS' => 15000  // Data for Serbia
+            'RS' => 15000, // Data for Serbia
         ];
     }
 
@@ -101,6 +98,39 @@ class WorldMapWidget extends Widget
     public function additionalOptions(): array
     {
         return []; // No additional options by default
+    }
+
+    /**
+     * Provides a stable DOM id for this widget's map container.
+     */
+    public function getMapId(): string
+    {
+        return 'filament-world-map-widget-'.$this->getId();
+    }
+
+    /**
+     * Provides the selector used by jsVectorMap.
+     */
+    public function getMapSelector(): string
+    {
+        return '#'.$this->getMapId();
+    }
+
+    /**
+     * Changes whenever map data or options change, forcing Livewire to remount the Alpine map.
+     */
+    public function getMapChecksum(): string
+    {
+        return 'filament-world-map-widget-'.md5(json_encode([
+            'id' => $this->getId(),
+            'stats' => $this->stats(),
+            'tooltip' => (string) $this->tooltip(),
+            'map' => is_string($this->map()) ? $this->map() : $this->map()->value,
+            'customMapUrl' => $this->customMapUrl(),
+            'color' => $this->color(),
+            'height' => $this->height(),
+            'additionalOptions' => $this->additionalOptions(),
+        ]) ?: '');
     }
 
     /**

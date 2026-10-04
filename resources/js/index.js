@@ -6,7 +6,7 @@ import jsVectorMap from 'jsvectormap';
  * @param {object} options.stats - The stats data, with country codes as keys and values as view counts
  * @param {string} options.tooltipText - Text to display next to the stats in the tooltip
  * @param {string} options.map - The name of the map to use
- * @param {string} options.customMapUrl - The name of the map to use
+ * @param {string|null} options.customMapUrl - URL for a custom map script
  * @param {array} options.color - RGB array for the region color
  * @param {string} options.selector - The CSS selector for the HTML element to attach the map
  * @param {object} options.additionalOptions - Additional options to override or extend the default configuration
@@ -21,7 +21,10 @@ export default function initWorldMapWidget({ stats, tooltipText, map, customMapU
 
         init() {
             const self = this;
-            const scriptUrl = customMapUrl != '' ? customMapUrl : `https://raw.githubusercontent.com/themustafaomar/jsvectormap/master/src/maps/${map.replace(/_/g, '-')}.js`;
+            const defaultMapUrl = `https://raw.githubusercontent.com/themustafaomar/jsvectormap/master/src/maps/${map.replace(/_/g, '-')}.js`;
+            const scriptUrl = typeof customMapUrl === 'string' && customMapUrl.trim() !== ''
+                ? customMapUrl
+                : defaultMapUrl;
 
             loadScript(scriptUrl, () => {
                 self.renderMap();
@@ -61,8 +64,9 @@ export default function initWorldMapWidget({ stats, tooltipText, map, customMapU
                     this.mapInstance.destroy();
                 } catch (e) {}
                 this.mapInstance = null;
-                container.innerHTML = '';
             }
+
+            container.innerHTML = '';
 
             const isDarkMode = document.documentElement.classList.contains('dark');
             const dataValues = this.stats || {};
